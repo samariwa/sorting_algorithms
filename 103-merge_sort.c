@@ -85,9 +85,9 @@ void merge(int *array, int iBegin, int iMiddle, int iEnd, int *temp)
 	for (h = iBegin; h < k; h++)
 	{
 		if (h < k - 1)
-			printf("%d, ", array[h]);
+			printf("%d, ", temp[h]);
 		else
-			printf("%d", array[h]); /* last element */
+			printf("%d", temp[h]); /* last element */
 	}
 	printf("\n");
 }
