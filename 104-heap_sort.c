@@ -5,9 +5,10 @@
  * @array: the array
  * @pos1: the first index (element to swap)
  * @pos2: the second index (element to swap)
+ * @size: number of elements in array
  * Return: Nothing
  */
-void swap(int *array, int pos1, int pos2)
+void swap(int *array, int pos1, int pos2, size_t size)
 {
 	int temp;
 
@@ -17,6 +18,8 @@ void swap(int *array, int pos1, int pos2)
 	temp = array[pos1];
 	array[pos1] = array[pos2];
 	array[pos2] = temp;
+	/* print array after swap */
+	print_array(array, size);
 }
 
 /**
@@ -81,9 +84,7 @@ void siftDown(heap_t *heap, int index, int size)
 	/*printf("in siftDown: max = %d & index (%d)\n", max, index);*/
 	if (max != index) /* need to swap node with (max) child */
 	{
-		swap(heap->array, max, index);
-		/* print array after every swap */
-		print_array(heap->array, size); /* count changes, pass size to fn */
+		swap(heap->array, max, index, size);
 		siftDown(heap, max, size); /* Repeat until heap property achieved */
 	}
 }
@@ -137,15 +138,11 @@ void heap_sort(int *array, size_t size)
 	{
 		build_heap(heap, array, (int)size);
 		old_size = heap->count;
-		/*printf("heap built (max value should be at root): ");*/
-		print_array(heap->array, size); /*print heap->array (that's the sorted)?*/
 		/* to sort the array: starting with root & last elem */
 		for (i = (int)size - 1; i > 0; i--)
 		{
 			/* once array is 'heapified', root is max elem */
-			swap(heap->array, 0, i); /* root with last elem */
-			/* print array after swap */
-			print_array(heap->array, size);
+			swap(heap->array, 0, i, size); /* root with last elem */
 			heap->count -= 1;
 			siftDown(heap, 0, (int)size); /* heapify heap from root */
 		}
