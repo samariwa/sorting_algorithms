@@ -75,7 +75,6 @@ int **alloc_grid(int width, int height)
 		for (j = 0; j < width; j++)
 			grid[i][j] = 0;/* initialize the arrays/rows */
 	}
-
 	return (grid);
 }
 
@@ -104,7 +103,7 @@ void radix_sort(int *array, size_t size)
 		max /= 10; /* get number of digits in max */
 	} /* dynamically allocate memory to temp arrays */
 	bucket_count = malloc(sizeof(int) * (int)size); /* as many as size values */
-	buckets = alloc_grid(10, (int)size); /* width(0->9) by height(rows/size) */
+	buckets = alloc_grid((int)size, 10); /* height(rows/size) * width(cols) 0->9 */
 	if (bucket_count == NULL || buckets == NULL)
 		return; /* malloc failed */
 	/* sort: starting from least significant digit */
