@@ -38,7 +38,7 @@ int hoare_partition(int *array, int lowerbound, int upperbound, size_t size)
 	int start = lowerbound - 1, end = upperbound + 1, pivot;
 
 	/* swap a[lowerbound] with a[upperbound], pivot = array[upperbound] */
-	swap(array, upperbound, lowerbound);
+	/*swap(array, upperbound, lowerbound);*/
 	/*print_array(array, size);*/
 	pivot = array[lowerbound]; /* i.e. array[initial upperbound] */
 	/*printf("pivot: [%d] -> %d\n", upperbound, pivot);*/
