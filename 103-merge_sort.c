@@ -140,5 +140,6 @@ void merge_sort(int *array, size_t size)
 	/* sort elements from temp int array */
 	actual_merge_sort(temp, 0, (int)size, array);
 	/* free temp once done */
+	free(temp);
 }
 
