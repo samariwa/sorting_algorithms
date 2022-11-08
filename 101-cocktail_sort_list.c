@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * swap_nodes_forwards - swaps the the next node with the current
+ * swap_nodes_forward - swaps the the next node with the current
  * @list: double pointer to doubly linked list
  * @curr: pointer to the current node
  * @next: pointer to current's next
