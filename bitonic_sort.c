@@ -106,6 +106,8 @@ void actual_bitonic_sort(int *array, int start, int size, int order, int a_sz)
 		 * print starting sequences (as is) before merge
 		 * & the result (merged sequence) after
 		 */
+		if (twos > 3)
+			twos = 0;
 		if (twos <= 1 || size != 2)
 		{
 			printf("Merging [%d/%d] (%s):\n", size, a_sz, order == 0 ? "UP" : "DOWN");

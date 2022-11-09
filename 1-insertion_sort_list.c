@@ -11,9 +11,9 @@ void insertion_sort_list(listint_t **list)
 	listint_t *s_tail, *next, *after, *before, *curr, *curr_prev;
 
 	/* the sorted part is assumed to be the first node */
-	s_tail = *list; /* begin with (sorted tail) == head of list */
-	if (!s_tail) /* list is NULL */
+	if (!list || *list == NULL) /* if list == NULL or undefined */
 		return;
+	s_tail = *list; /* begin with (sorted tail) == head of list */
 	for (next = s_tail->next; next != NULL; s_tail = next, next = next->next)
 	{ /* compare the sorted set of nodes with the next unsorted node */
 		if (s_tail->n > next->n) /* swap */
@@ -43,4 +43,5 @@ void insertion_sort_list(listint_t **list)
 			}
 		} /* else update s_tail to next & get next unsorted node*/
 	}
+	/* if (!list) checks for undefined list case (i.e. sort(NULL)) */
 }
