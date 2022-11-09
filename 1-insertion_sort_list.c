@@ -39,7 +39,7 @@ void insertion_sort_list(listint_t **list)
 					print_list(*list); /* print list after swap */
 				} /* update curr_prev & curr - to the node before it */
 				curr = curr_prev; /* the node we've just swapped */
-				curr_prev = curr_prev->prev;
+				curr_prev = curr_prev->prev; /* repeat (going backwards) until sorted */
 			}
 		} /* else update s_tail to next & get next unsorted node*/
 	}
