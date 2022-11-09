@@ -14,7 +14,7 @@ void shell_sort(int *array, size_t size)
 	int interval = 1, temp, col, col_row;
 
 	/* check that array is defined(i.e. not sort(NULL)) & isn't empty */
-	if (!array || size == 0 || size == 1)
+	if (!array || size == 0 || size == 1) /* or of size 1 (sorted) */
 		return;
 	/* calculate a knuth series interval: initialized to one at start */
 	while (interval <= (int)size / 3)

@@ -99,7 +99,10 @@ void counting_sort(int *array, size_t size)
 {
 	int k, *output;
 
-	/* get k == max element in array + 1*/
+	/* check that array is defined and of size > 1 */
+	if (!array || size < 2)
+		return; /* array undefined, empty or of size 1 */
+	/* (else) get k == max element in array + 1*/
 	k = get_range(array, size);
 	/* dynamically allocate memory (size k) to output array */
 	output = malloc(sizeof(int) * k); /* will hold the sorted values */
