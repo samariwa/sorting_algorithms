@@ -112,6 +112,8 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		for (l = 0; l <= i; l++)
 		{
 			printf("%d", array[l]);
+			if (l != i)
+                                printf(", ");
 		}
 		printf("\n");
 		printf("[right]: ");
@@ -143,15 +145,19 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 	}
 
 	for (k = lower_bound; k <= upper_bound; k++)
-	{
 		array[k] = sorted_array[k];
-	}
 
 	free(sorted_array);
 }
 
 /**
- * 
+ * divide - function that divides the array into cunks for sorting
+ * @array: the array to be sorted
+ * @size: the size of the array
+ * @lower_boud: the index of the first value of a chunk
+ * @upper_bound: the index of the last value of a chunk
+ *
+ * Return: nothing
  */
 void divide(int *array, size_t size, size_t lower_bound, size_t upper_bound)
 {
