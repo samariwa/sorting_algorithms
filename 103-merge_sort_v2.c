@@ -2,7 +2,11 @@
 void dividev2(int *array, size_t size, size_t lower_bound, size_t upper_bound);
 
 /**
+ * merge_sortv2 - the main function for this mdule thst calls the divide func
+ * @array: the array to be sorted
+ * @size: the size of the array to be sorted
  *
+ * Return: nothing
  */
 void merge_sortv2(int *array, size_t size)
 {
@@ -18,10 +22,10 @@ void merge_sortv2(int *array, size_t size)
  * @lower_bound: the index of the first value of the array
  * @mid: the index of the value dividing the array in halves
  * @upper_bound: the index of the last value of the array
- * 
+ *
  * Return: nothing
  */
-void mergev2(int *array, size_t size, size_t lower_bound, 
+void mergev2(int *array, size_t size, size_t lower_bound,
 		size_t mid, size_t upper_bound)
 {
 	size_t i = lower_bound, j = mid + 1, k = lower_bound, l;
@@ -35,9 +39,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		{
 			printf("%d", array[l]);
 			if (l != i)
-			{
 				printf(", ");
-			}
 		}
 		printf("\n");
 		printf("[right]: ");
@@ -45,9 +47,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		{
 			printf("%d", array[l]);
 			if (l != j)
-			{
 				printf(", ");
-			}
 		}
 		printf("\n");
 		if (array[i] < array[j])
@@ -65,9 +65,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		{
 			printf("%d", sorted_array[l]);
 			if (l != k)
-			{
 				printf(", ");
-			}
 		}
 		printf("\n");
 		k++;
@@ -81,9 +79,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		{
 			printf("%d", array[l]);
 			if (l != i)
-			{
 				printf(", ");
-			}
 		}
 		printf("\n");
 		printf("[right]: ");
@@ -91,9 +87,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		{
 			printf("%d", array[l]);
 			if (l != j)
-			{
 				printf(", ");
-			}
 		}
 		printf("\n");
 		while (j <= upper_bound)
@@ -107,9 +101,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		{
 			printf("%d", sorted_array[l]);
 			if (l != k)
-			{
 				printf(", ");
-			}
 		}
 		printf("\n");
 	}
@@ -126,6 +118,8 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 		for (l = 0; l <= j; l++)
 		{
 			printf("%d", array[l]);
+			if (l != j)
+                        	printf(", ");
 		}
 		printf("\n");
 		while (i <= mid)
@@ -141,6 +135,8 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 			if (l != k)
 			{
 				printf(", ");
+				if (l != j)
+					printf(", ");
 			}
 		}
 		printf("\n");
@@ -155,7 +151,7 @@ void mergev2(int *array, size_t size, size_t lower_bound,
 }
 
 /**
- *
+ * 
  */
 void divide(int *array, size_t size, size_t lower_bound, size_t upper_bound)
 {
