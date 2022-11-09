@@ -14,7 +14,7 @@ void shell_sort(int *array, size_t size)
 	int interval = 1, temp, col, col_row;
 
 	/* check that array is defined(i.e. not sort(NULL)) & isn't empty */
-	if (!array || size == 0)
+	if (!array || size == 0 || size == 1)
 		return;
 	/* calculate a knuth series interval: initialized to one at start */
 	while (interval <= (int)size / 3)
@@ -42,7 +42,6 @@ void shell_sort(int *array, size_t size)
 	/* update interval (decrement it) & repeat while True */
 		interval = (interval - 1) / 3;
 		/* print array every time interval changes, if its still valid */
-		if (interval > 0)
-			print_array(array, size);
+		print_array(array, size);
 	}
 }
