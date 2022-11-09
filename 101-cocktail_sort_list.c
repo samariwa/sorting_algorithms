@@ -64,7 +64,6 @@ void cocktail_sort_list(listint_t **list)
 
 	if (!list) /* if list is undefined */
 		return;
-	/* start and end mark the first and last node to check */
 	left = *list; /* start @ head of list */
 	if (left == NULL || left->next == NULL)
 		return; /* empty list or one node list (sorted) */
@@ -75,17 +74,15 @@ void cocktail_sort_list(listint_t **list)
 		{
 			end = right->next;
 			if (end && right->n > end->n)
-			{
-				sorted = 0;
-				/* swap the two nodes, right(before end) & end */
+			{ /* swap the two nodes, right(before end) & end */
 				swap_nodes_forward(list, right, end);
 				print_list(*list); /* print list after swap */
 				right = end; /*i.e. retain I advance position in list */
+				sorted = 0;
 			}
 		} /* decrease right since the nodes after end are in correct order */
 		if (end)
-			right = end;
-		/* advance & swap backwards */
+			right = end;/* advance & swap backwards */
 		if (left == right) /* just 2 elements, no need for backward swap */
 			return;
 		for (left = right; left->prev != NULL; left = left->prev)
