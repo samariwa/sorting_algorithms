@@ -1,6 +1,5 @@
 #include "sort.h"
 
-
 /**
  * bubble_sort - sorts an array in ascending order
  * using bubble sort algorithm
@@ -11,33 +10,26 @@
  */
 void bubble_sort(int *array, size_t size)
 {
-	int temp;
-	size_t i;
-	bool to_swap = 1;
+	int i = 0, sorted = 1, j, k, temp, len = (int) size;
 
-	while (to_swap)
+	for (; i < len; i++)
 	{
-		to_swap = 0;
-		for (i = 0; i < size - 1; i++)
+		/* compare two adjacent elements and swap if necessary */
+		for (k = 0, j = 1; j < (len - i) && k < (len - 1 - i); j++, k++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[k] > array[j]) /* swap */
 			{
-				temp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = temp;
-				to_swap = true;
+				sorted = 0; /* array isn't sorted after all */
+				temp = array[k];
+				array[k] = array[j];
+				array[j] = temp;
+				/* print the array after every swap */
+				print_array(array, size);
 			}
 		}
-
-		for (i = 0; i < size; i++)
-		{
-			printf("%d", array[i]);
-			if (i != size - 1)
-			{
-				printf(", ");
-			}
-		}
-		printf("\n");
+		/* check if a swap happened in 'this' pass - if not, array's sorted */
+		if (sorted)
+			break;
 	}
-
 }
+
