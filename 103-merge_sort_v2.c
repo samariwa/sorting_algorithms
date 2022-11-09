@@ -7,13 +7,22 @@ void dividev2(int *array, size_t size, size_t lower_bound, size_t upper_bound);
 void merge_sortv2(int *array, size_t size)
 {
 	size_t lower_bound = 0, upper_bound = size - 1;
+
 	dividev2(array, size, lower_bound, upper_bound);
 }
 
 /**
- *
+ * mergev2 - function that merges the sorted array chunks
+ * @array: the array being sorted
+ * @size: the size of the array
+ * @lower_bound: the index of the first value of the array
+ * @mid: the index of the value dividing the array in halves
+ * @upper_bound: the index of the last value of the array
+ * 
+ * Return: nothing
  */
-void mergev2(int *array, size_t size, size_t lower_bound, size_t mid, size_t upper_bound)
+void mergev2(int *array, size_t size, size_t lower_bound, 
+		size_t mid, size_t upper_bound)
 {
 	size_t i = lower_bound, j = mid + 1, k = lower_bound, l;
 	int *sorted_array = malloc(sizeof(int) * size);
