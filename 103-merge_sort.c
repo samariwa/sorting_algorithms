@@ -129,6 +129,9 @@ void merge_sort(int *array, size_t size)
 {
 	int *temp, i;
 
+	/* check that the array is defined and is of size > 1 */
+	if (!array || size < 2)
+		return;
 	/* allocate memory to temporary working array */
 	temp = malloc(sizeof(int) * (int)size);
 	/* check that malloc succeeds */
