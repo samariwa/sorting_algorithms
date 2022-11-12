@@ -72,13 +72,10 @@ int **alloc_grid(int width, int height)
 			free(grid);/* free 2D array */
 			return (NULL);
 		}
-		printf("[");
 		for (j = 0; j < width; j++)
 		{
 			grid[i][j] = 0;/* initialize the arrays/rows */
-			printf("%d ", grid[i][j]);
 		}
-		printf("]\n");
 	}
 	return (grid);
 }
