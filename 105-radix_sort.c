@@ -38,8 +38,8 @@ void free_grid(int **grid, int height)
 /**
  * alloc_grid - creates a 2d integer grid
  * Description: Each element of the grid should be initialized to 0
- * @width: int size width of array
- * @height: int size height of array
+ * @width: int size width (cols) of array
+ * @height: int size height (row) of array
  * Return: Pointer to new grid
  */
 
@@ -72,8 +72,13 @@ int **alloc_grid(int width, int height)
 			free(grid);/* free 2D array */
 			return (NULL);
 		}
+		printf("[");
 		for (j = 0; j < width; j++)
+		{
 			grid[i][j] = 0;/* initialize the arrays/rows */
+			printf("%d ", grid[i][j]);
+		}
+		printf("]\n");
 	}
 	return (grid);
 }
@@ -94,36 +99,36 @@ void radix_sort(int *array, size_t size)
 {
 	int **buckets, *bucket_count, i, j, k, mod, passes = 0, max, pass, div = 1;
 
-	/* get the largest number in array */
-	max = get_largest(array, size);
-	/* calculate the number of passes based on largest number */
-	while (max > 0)
+	if (!array || size < 2)
+		return; /* can't sort an undefined, empty or 1 elem array */
+	max = get_largest(array, size); /* get largest (max) elem in array */
+	while (max > 0) /* calculate number of passes from max */
 	{
 		passes++;
 		max /= 10; /* get number of digits in max */
 	} /* dynamically allocate memory to temp arrays */
-	bucket_count = malloc(sizeof(int) * (int)size); /* as many as size values */
-	buckets = alloc_grid((int)size, 10); /* height(rows/size) * width: 0->9 */
+	bucket_count = malloc(sizeof(int) * 10); /* as many as 10 (buckets 0 -9) */
+	buckets = alloc_grid(10, (int)size); /* width: 0->9 * height (rows/size) */
 	if (bucket_count == NULL || buckets == NULL)
 		return; /* malloc failed */
 	/* sort: starting from least significant digit */
 	for (pass = 0; pass < passes; pass++)
 	{ /* initialize bucket_count (tracks elements (count) in bucket) */
 		for (i = 0; i < 10; i++)
-			bucket_count[i] = 0;
+			bucket_count[i] = 0; /* each bucket/col has 0 elems */
 		/* sort elements according to the pass-th digit (into buckets) */
-		for (i = 0; i < (int)size; i++)
+		for (i = 0; i < (int)size; i++) /* sort all elems in array */
 		{
 			mod = (array[i] / div) % 10; /* the pass-th digit */
-			buckets[mod][bucket_count[mod]] = array[i];
-			bucket_count[mod] += 1;
+			buckets[bucket_count[mod]][mod] = array[i]; /*row, bucket(col) */
+			bucket_count[mod] += 1; /* increment no of elems in a bucket (col) */
 		} /* collect the buckets (rearrange array with bucket elements) */
 		i = 0; /* start at array[0] */
 		for (k = 0; k < 10; k++)
 		{ /* collect all elements in bucket k */
 			for (j = 0; j < bucket_count[k]; j++)
 			{
-				array[i] = buckets[k][j];
+				array[i] = buckets[j][k]; /* collect jth elem in bucket k */
 				i++;
 			}
 		} /* repeat until most significant digit (last pass) */
@@ -131,5 +136,5 @@ void radix_sort(int *array, size_t size)
 		div *= 10; /* for next least significant digit -> most significant */
 	} /* free all dynamically allocated memory */
 	free(bucket_count);
-	free_grid(buckets, 10);
+	free_grid(buckets, (int)size); /* grid & rows in grid */
 }
